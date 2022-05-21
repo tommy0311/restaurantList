@@ -15,8 +15,12 @@
   </div>
 </div>
 
+<div class="container mt-2">
+  <a class="btn btn-sm btn-outline-primary" href="./restaurants/new"> 新增餐廳 </a>
+</div>
+
 <!-- restaurant list -->
-<div class="container mt-5">
+<div class="container mt-2">
   <div class="row">
     {{#each restaurants}}
     <div class="col-12 col-sm-6 col-md-4 mx-auto">
@@ -43,7 +47,7 @@
           <a class="btn btn-sm me-3" href="/restaurants/{{this.id}}/edit"> Edit </a>
           <a class="me-3 btn btn-sm" href="/restaurants/{{this.id}}"> Detail </a>
           <form action="./restaurants/{{ this._id }}/delete" method="POST" style="display: inline;">
-            <button class="btn btn-sm btn-outline-info" type="submit">delete</button>
+            <button class="btn btn-sm btn-outline-danger" type="submit">delete</button>
           </form>
         </div>
       </div>
