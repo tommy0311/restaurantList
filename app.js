@@ -30,7 +30,7 @@ db.once('open', () => {
 app.get("/", (req, res) => {
   return RestaurantList.find()
     .lean()
-    .then(restaurants => res.render("index", { restaurants: restaurants }))
+    .then(restaurants => res.render("index", { restaurants }))
     .catch(error => console.log(error))
 });
 
@@ -82,7 +82,7 @@ app.get("/search", (req, res) => {
     {"name": {"$regex": keyword, "$options": "i"}},
     {"category": {"$regex": keyword, "$options": "i"}}]})
     .lean()
-    .then(restaurants => res.render("index", { restaurants: restaurants, keyword: keyword }))
+    .then(restaurants => res.render("index", { restaurants, keyword }))
     .catch(error => {
       console.log(error)
       res.redirect('/')
@@ -91,9 +91,9 @@ app.get("/search", (req, res) => {
 
 app.get("/restaurants/:id", (req, res) => {
   const id = req.params.id
-  return RestaurantList.findOne({ id: id })
+  return RestaurantList.findOne({ id })
   .lean()
-  .then(restaurant => res.render("show", { restaurant: restaurant }))
+  .then(restaurant => res.render("show", { restaurant }))
   .catch(error => {
     console.log(error)
     res.redirect('/')
@@ -102,9 +102,20 @@ app.get("/restaurants/:id", (req, res) => {
 
 app.post('/restaurants/:id/delete', (req, res) => {
   const id = req.params.id
-  return RestaurantList.findOne({id: id})
+  return RestaurantList.findOne({ id })
     .then(restaurant => restaurant.remove())
     .then(() => res.redirect('/'))
+    .catch(error => {
+      console.log(error)
+      res.redirect('/')
+    })
+})
+
+app.get('/restaurants/:id/edit', (req, res) => {
+  const id = Number(req.params.id)
+  return RestaurantList.findOne({ id })
+    .lean()
+    .then((restaurant) => res.render('edit', { restaurant }))
     .catch(error => {
       console.log(error)
       res.redirect('/')
