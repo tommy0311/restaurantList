@@ -30,21 +30,20 @@ db.once('open', () => {
 app.get("/", (req, res) => {
   return RestaurantList.find()
     .lean()
-    .then(restaurants => {
-      //console.log(restaurants)
-      res.render("index", { restaurants: restaurants }) 
-    })
+    .then(restaurants => res.render("index", { restaurants: restaurants }))
     .catch(error => console.log(error))
 });
 
-/*
+
 app.get("/restaurants/:id", (req, res) => {
-  const restaurant = RestaurantList.find(
-    (obj) => obj.id.toString() === req.params.id
-  );
-  res.render("show", { restaurant: restaurant });
+  const id = req.params.id
+  return RestaurantList.findOne({ id: id })
+  .lean()
+  .then(restaurant => res.render("show", { restaurant: restaurant }))
+  .catch(error => console.log(error))
 });
 
+/*
 app.get("/search", (req, res) => {
   const keyword = req.query.keyword;
   const restaurants = RestaurantList.filter((obj) => 
