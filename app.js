@@ -43,18 +43,17 @@ app.get("/restaurants/:id", (req, res) => {
   .catch(error => console.log(error))
 });
 
-/*
-app.get("/search", (req, res) => {
-  const keyword = req.query.keyword;
-  const restaurants = RestaurantList.filter((obj) => 
-     ( obj.name.toLowerCase().includes(keyword.toLowerCase()) || 
-     obj.category.toLowerCase().includes(keyword.toLowerCase())));
 
-  res.render("index", {
-    restaurants: restaurants,
-    keyword: keyword,
-  });
-});*/
+app.get("/search", (req, res) => {
+  const keyword = req.query.keyword
+  const regexKeyword = "/^" + keyword + "$/i";
+  return RestaurantList.find( {$or: [
+    {"name": {"$regex": keyword, "$options": "i"}},
+    {"category": {"$regex": keyword, "$options": "i"}}]})
+    .lean()
+    .then(restaurants => res.render("index", { restaurants: restaurants, keyword: keyword }))
+    .catch(error => console.log(error))
+});
 
 // localhost:3000 
 app.listen(port, () => {
