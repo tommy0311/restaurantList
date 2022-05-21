@@ -1,0 +1,20 @@
+<div class="container mt-2">
+  <form action="/restaurants/{{ restaurant.id }}/edit" method="POST">
+    <button class="btn btn-sm btn-outline-primary mb-2" type="submit">Save</button> <a href="/">back</a>
+    <input class="form-control mb-2" type="text" placeholder="Name" name="name" value="{{ restaurant.name }}">
+    <input class="form-control mb-2" type="text" placeholder="English Name" name="name_en"
+      value="{{ restaurant.name_en }}">
+    <input class="form-control mb-2" type="text" placeholder="Category" name="category"
+      value="{{ restaurant.category }}">
+    <input class="form-control mb-2" type="text" placeholder="Image" name="image" value="{{ restaurant.image }}">
+    <input class="form-control mb-2" type="text" placeholder="Location" name="location"
+      value="{{ restaurant.location }}">
+    <input class="form-control mb-2" type="text" placeholder="Phone" name="phone" value="{{ restaurant.phone }}">
+    <input class="form-control mb-2" type="text" placeholder="Google Map" name="google_map"
+      value="{{ restaurant.google_map }}">
+    <input class="form-control mb-2" type="text" placeholder="Rating" name="rating" value="{{ restaurant.rating }}">
+    <input class="form-control mb-2" type="text" placeholder="Description" name="description"
+      value="{{ restaurant.description }}">
+    <div class="mb-5"></div>
+  </form>
+</div>
