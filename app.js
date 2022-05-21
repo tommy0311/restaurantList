@@ -39,10 +39,8 @@ app.get('/restaurants/new', (req, res) => {
 })
 
 app.post('/restaurants', (req, res) => {
-  //console.log("body: ", req.body)
-  const name = req.body.name       // 從 req.body 拿出表單裡的 name 資料
   let maxId = 1;
-  RestaurantList.findOne()
+  return RestaurantList.findOne()
     .sort('-id')
     .lean()
     .then((lastRestaurant) => {
@@ -77,7 +75,6 @@ app.post('/restaurants', (req, res) => {
 
 app.get("/search", (req, res) => {
   const keyword = req.query.keyword
-  const regexKeyword = "/^" + keyword + "$/i";
   return RestaurantList.find( {$or: [
     {"name": {"$regex": keyword, "$options": "i"}},
     {"category": {"$regex": keyword, "$options": "i"}}]})
@@ -116,6 +113,28 @@ app.get('/restaurants/:id/edit', (req, res) => {
   return RestaurantList.findOne({ id })
     .lean()
     .then((restaurant) => res.render('edit', { restaurant }))
+    .catch(error => {
+      console.log(error)
+      res.redirect('/')
+    })
+})
+
+app.post('/restaurants/:id/edit', (req, res) => {
+  const id = Number(req.params.id)
+  return RestaurantList.findOne({ id })
+    .then((restaurant) => {
+      restaurant.name = req.body.name || '',
+      restaurant.name_en = req.body.name_en || '',
+      restaurant.category = req.body.category || '',
+      restaurant.image = req.body.image || '',
+      restaurant.location = req.body.location || '',
+      restaurant.phone = req.body.phone || '',
+      restaurant.google_map = req.body.google_map || '',
+      restaurant.rating = Number(req.body.rating) || 0,
+      restaurant.description = req.body.description || ''
+      return restaurant.save()
+    })
+    .then(() => res.redirect('/'))
     .catch(error => {
       console.log(error)
       res.redirect('/')
