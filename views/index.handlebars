@@ -32,15 +32,20 @@
                 <i class="fas fa-utensils pr-2"></i> {{this.category}}
               </div>
         
-              <span class="badge badge-pill badge-danger font-weight-normal">
+              <span class="badge rounded-pill bg-danger fw-normal">
                 {{this.rating}}
                 <i class="fas fa-star fa-xs"></i>
               </span>
-        
             </div>
           </div>
         </a>
-       
+        <div class="mb-3 d-flex justify-content-end">
+          <a class="btn btn-sm me-3" href="/restaurants/{{this.id}}/edit"> Edit </a>
+          <a class="me-3 btn btn-sm" href="/restaurants/{{this.id}}/detail"> Detail </a>
+          <form action="./restaurants/{{ this._id }}/delete" method="POST" style="display: inline;">
+            <button class="btn btn-sm btn-outline-info" type="submit">delete</button>
+          </form>
+        </div>
       </div>
     </div>
     {{/each}}
