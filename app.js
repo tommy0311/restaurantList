@@ -73,10 +73,6 @@ app.post('/restaurants', (req, res) => {
       console.log(error)
       res.redirect('/')
     })
-  
-  //return Todo.create({ name })     // 存入資料庫
-  //  .then(() => res.redirect('/')) // 新增完成後導回首頁
-  //  .catch(error => console.log(error))
 })
 
 app.get("/search", (req, res) => {
@@ -87,7 +83,10 @@ app.get("/search", (req, res) => {
     {"category": {"$regex": keyword, "$options": "i"}}]})
     .lean()
     .then(restaurants => res.render("index", { restaurants: restaurants, keyword: keyword }))
-    .catch(error => console.log(error))
+    .catch(error => {
+      console.log(error)
+      res.redirect('/')
+    })
 });
 
 app.get("/restaurants/:id", (req, res) => {
@@ -95,8 +94,22 @@ app.get("/restaurants/:id", (req, res) => {
   return RestaurantList.findOne({ id: id })
   .lean()
   .then(restaurant => res.render("show", { restaurant: restaurant }))
-  .catch(error => console.log(error))
+  .catch(error => {
+    console.log(error)
+    res.redirect('/')
+  })
 });
+
+app.post('/restaurants/:id/delete', (req, res) => {
+  const id = req.params.id
+  return RestaurantList.findOne({id: id})
+    .then(restaurant => restaurant.remove())
+    .then(() => res.redirect('/'))
+    .catch(error => {
+      console.log(error)
+      res.redirect('/')
+    })
+})
 
 // localhost:3000 
 app.listen(port, () => {
