@@ -1,5 +1,5 @@
 <div class="container mt-2">
-  <form action="/restaurants/{{ restaurant.id }}/edit" method="POST">
+  <form action="/restaurants/{{ restaurant.id }}?_method=PUT" method="POST">
     <button class="btn btn-sm btn-outline-primary mb-2" type="submit">Save</button> <a href="/">back</a>
     <input class="form-control mb-2" type="text" placeholder="Name" name="name" value="{{ restaurant.name }}">
     <input class="form-control mb-2" type="text" placeholder="English Name" name="name_en"
