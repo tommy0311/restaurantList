@@ -4,10 +4,31 @@
     <div class="search-bar-inner">
       <form action="/search">
         <h4 class="mb-2">尋找餐廳：</h4>
-        <div class="input-group">
-          <input type="text" name="keyword" class="form-control" placeholder="輸入餐廳、分類" aria-label="Restaurant Name..." value="{{keyword}}" aria-describedby="search-button" >
+        <div class="input-group ">
+          <input type="text" name="keyword" class="form-control" placeholder="輸入餐廳、分類" aria-label="Restaurant Name..."
+            value="{{keyword}}" aria-describedby="search-button" />
           <div class="input-group-append">
-            <button class="btn btn-major" type="submit" id="search-button"><i class="fas fa-search fa-lg"></i></button>
+            <button class="btn btn-major" type="submit" id="search-button" name="sortQuery" value="{{sortQuery}}"><i
+                class="fas fa-search fa-lg"></i></button>
+            </div>
+            <div class="dropdown ms-5">
+              <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="dropdownMenuButton1"
+                data-bs-toggle="dropdown" aria-expanded="false">
+                排序：{{ sortString }}
+              </button>
+              <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                {{#if keyword}}
+                <li><a class="dropdown-item" href="?keyword={{ keyword }}&sortQuery=name">餐廳名稱：A → Z</a></li>
+                <li><a class="dropdown-item" href="?keyword={{ keyword }}&sortQuery=name_desc">餐廳名稱：Z → A</a></li>
+                <li><a class="dropdown-item" href="?keyword={{ keyword }}&sortQuery=category">類別</a></li>
+                <li><a class="dropdown-item" href="?keyword={{ keyword }}&sortQuery=location">地區</a></li>
+                {{else}}
+                <li><a class="dropdown-item" href="?sortQuery=name">餐廳名稱：A → Z</a></li>
+                <li><a class="dropdown-item" href="?sortQuery=name_desc">餐廳名稱：Z → A</a></li>
+                <li><a class="dropdown-item" href="?sortQuery=category">類別</a></li>
+                <li><a class="dropdown-item" href="?sortQuery=4">地區</a></li>
+                {{/if}}
+              </ul>
           </div>
         </div>
       </form>
