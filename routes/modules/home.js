@@ -18,13 +18,15 @@ const sortSqlMap = {
 }
 
 router.get("/", (req, res) => {
+  const userId = req.user._id
+
 	let sortQuery = req.query.sortQuery
   if(!sortQuery){
     sortQuery = 'name'
   }
 	//console.log("home:", req.query )
   
-	return RestaurantList.find()
+	return RestaurantList.find({ userId })
 	  .lean()
 	  .sort(sortSqlMap[sortQuery])
 	  .then(restaurants => res.render("index", { restaurants, sortQuery, sortString:sortStringMap[sortQuery] }))

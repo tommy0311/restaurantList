@@ -4,6 +4,9 @@ const exphbs = require("express-handlebars");
 const bodyParser = require('body-parser')
 const methodOverride = require('method-override') 
 const flash = require('connect-flash')  
+if (process.env.NODE_ENV !== 'production') {
+  require('dotenv').config()
+}
 
 const routes = require('./routes') // It is equal to require('./routes/index')
 require('./config/mongoose')
@@ -15,7 +18,7 @@ const port = 3000;
 app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
 app.use(session({
-  secret: 'ThisIsMySecret',
+  secret: process.env.SESSION_SECRET,
   resave: false,
   saveUninitialized: true
 }))
