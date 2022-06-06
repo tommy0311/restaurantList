@@ -55,7 +55,7 @@ db.once('open', () => {
       })
       .then(() => {
         finish.push( index )
-        if (finish.length == SEED_USERS.length) {
+        if (finish.length === SEED_USERS.length) {
           resolve()
         }
       })
