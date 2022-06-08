@@ -27,8 +27,10 @@ git clone https://github.com/tommy0311/restaurantList.git
 ```
 cd restaurantList  //切至專案資料夾
 ```
-
-3.參考 .env.example，在跟目錄建立.env
+```
+npm install  //安裝套件
+```
+3.參考 .env.example，在根目錄建立 .env
 
 4.載入種子資料
 
