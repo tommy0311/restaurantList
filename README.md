@@ -1,46 +1,49 @@
-# 餐廳清單 
+## **Expense-tracker**
 
-此專案提供使用者搜尋、檢視餐廳資訊，例如:餐廳類別、地址、評分、描述等
+此專案提供使用者新增、修改與刪除「支出紀錄」
 
 ## 功能列表
 
-- 依照餐廳名稱及餐廳類別搜尋
-- 檢視餐廳詳細資訊包含類別、地址、電話、評分、圖片及 Google Map
-  - 點選 Google Map`顯示詳細地圖`可查看位置詳細資料
-- 使用者可註冊建立帳號
-- 使用者登入後可新增自己的餐廳清單
-- 點擊餐廳Detail按鈕，使用者可進入詳細資料頁面，檢視餐廳資訊
-- 點擊餐廳Edit按鈕，使用者可進入編輯頁面，修改餐廳資訊
-- 點擊Delete按鈕可刪除該餐廳
-
+1.  註冊帳號  
+    \- 註冊之後，可以登入/登出  
+    \- 只有登入狀態的使用者可以看到 app 內容，否則一律被導向登入頁  
+2.  在首頁一次瀏覽所有支出的清單  
+    \- 使用者只能看到自己建立的資料  
+3.  在首頁看到所有支出清單的總金額  
+4.  新增一筆支出  
+5.  編輯支出的屬性 (一次只能編輯一筆)  
+6.  刪除任何一筆支出 (一次只能刪除一筆)  
+7.  根據「**類別**」篩選支出；總金額的計算只會包括被篩選出來的支出總和
 
 ### 安裝
 
 1.開啟終端機(Terminal)cd 到存放專案本機位置並執行:
 
-```
-git clone https://github.com/tommy0311/restaurantList.git
+```plaintext
+git clone https://github.com/tommy0311/expense-tracker.git
 ```
 
 2.初始
 
+```plaintext
+cd expense-tracker //切至專案資料夾
 ```
-cd restaurantList  //切至專案資料夾
-```
-```
+
+```plaintext
 npm install  //安裝套件
 ```
+
 3.參考 .env.example，在根目錄建立 .env
 
 4.載入種子資料
 
-```
+```plaintext
 npm run seed
 ```
 
 5.開啟程式
 
-```
+```plaintext
 npm run start
 ```
 
@@ -48,24 +51,26 @@ npm run start
 
 ## Test Data
 
-
 ## Screen Photo
-1. 首頁
-<img width="693" alt="index" src="https://user-images.githubusercontent.com/12669644/172614522-d6d6bebf-ea7d-426c-9970-112bed41e6c5.png">
 
-2. 搜尋
-<img width="831" alt="search" src="https://user-images.githubusercontent.com/12669644/168429892-bf3da5e8-8824-4da8-891c-3bfa0290b126.png">
+*   首頁
 
-3. 檢視
-<img width="771" alt="show" src="https://user-images.githubusercontent.com/12669644/168429895-112da5bf-94d3-460b-b256-fe9f68f51efe.png">
+![expense-tracker](https://user-images.githubusercontent.com/12669644/174266640-1dc18cce-c41b-4125-9a28-90584444657d.png)
 
-4. 登入
-<img width="668" alt="login" src="https://user-images.githubusercontent.com/12669644/172614674-2d614504-3b71-45c4-8602-af1980bef0f1.png">
+*   修改
 
-5. 註冊
-<img width="668" alt="register" src="https://user-images.githubusercontent.com/12669644/172614751-25924249-ca1b-4325-b5a9-b149a95fb7ae.png">
+![edit](https://user-images.githubusercontent.com/12669644/174267495-deb08ee6-fa27-4ab7-8fb4-937e614cedaa.png)
+
+*   登入
+
+![login](https://user-images.githubusercontent.com/12669644/174267521-edf0fa96-36ab-475f-87d2-fc7c2bfd8d66.png)
+
+*   註冊
+
+![register](https://user-images.githubusercontent.com/12669644/174267566-5cbf553c-a46d-474c-859a-3e164238f85b.png)
 
 ## 使用工具
 
-- [Express](https://www.npmjs.com/package/express) - 應用程式架構
-- [Express-Handlebars](https://www.npmjs.com/package/express-handlebars) - 模板引擎
+*   [Express](https://www.npmjs.com/package/express) - 應用程式架構
+*   [Express-Handlebars](https://www.npmjs.com/package/express-handlebars) - 模板引擎
+*   [Mongoose](https://www.npmjs.com/package/mongoose) - Mongoose is a MongoDB object modeling tool
